@@ -1,0 +1,196 @@
+/* Newsletter PopUp */
+
+.subscribe_area > h2 {
+  color: #ffffff;
+}
+.subscribe_area > p {
+  color: #ffffff;
+}
+.grid__item h1{
+  color: ;
+}
+.subscribe-form {
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+.subscribe-form::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #ffffff !important;
+}
+.subscribe-form::-moz-placeholder { /* Firefox 19+ */
+  color: #ffffff !important;
+}
+.subscribe-form:-ms-input-placeholder { /* IE 10+ */
+  color: #ffffff !important;
+}
+.subscribe-form:placeholder { /* Firefox 18- */
+  color: #ffffff !important;
+}
+.newsletter-btn {
+  background: #222222 none repeat scroll 0 0;
+  color: #d0a97e;
+}
+.newsletter-btn:hover{
+  background: #222222 none repeat scroll 0 0;
+  color: #d0a97e;
+}
+.popup_off{
+  color: #999999;
+}
+.newsletter_popup_inner:before {
+  background: #ffffff;
+  opacity: 0;
+}
+/* Breadcurmb Banner */
+.breadcrumbs {
+  background: #000000 ;
+    padding-top: 80px;
+    padding-bottom: 90px;
+    }
+.overlay-bg::before {
+  background: #f31717 none repeat scroll 0 0;
+  opacity: 0;
+}
+.breadcrumbs-title, .page-banner h1 {
+  color: #ffffff;
+}
+.breadcrumb-list > li > a {
+  color: #d8d8d8;
+}
+.breadcrumb-list > li::before {
+  color: #d8d8d8;
+}
+.breadcrumb-list > li {
+  color: #d8d8d8;
+}
+/* Top Bar Noticfication */
+
+.top-notification-bar {
+  background: #0000ff;
+  background: -moz-linear-gradient(left, #0000ff 0%, #000080 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, #0000ff), color-stop(100%, #000080));
+  background: -webkit-linear-gradient(left, #0000ff 0%, #000080 100%);
+  background: -o-linear-gradient(left, #0000ff 0%, #000080 100%);
+  background: -ms-linear-gradient(left, #0000ff 0%, #000080 100%);
+  background: linear-gradient(to right, #0000ff 0%, #000080 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000ff', endColorstr='#000080', GradientType=1 );
+    }
+
+.notification-entry p a {
+  background-color: #0000ff;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+.notification-entry p a:hover {
+  background-color: #000080;
+  border: 1px solid #ffffff;
+  color: #fff;
+}
+.notification-close-btn {
+  background-color: ;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.notification-close-btn:hover{
+  background-color: #000080;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.notification-entry p {
+  color: #fff;
+}
+.top-notification-bar::before {
+  background: rgba(0, 0, 0, 0.5);
+}
+/* Typography */
+
+
+
+
+
+
+@font-face {
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/open_sans/opensans_n4.5460e0463a398b1075386f51084d8aa756bafb17.woff2?h1=YWNsc3VpdGVzLmNvbQ&hmac=1c025f558dc2b53656121c8314004a3ab5c863b095f305384a4bcc8e45c3afa6") format("woff2"),
+       url("https://fonts.shopifycdn.com/open_sans/opensans_n4.8512334118d0e9cf94c4626d298dba1c9f12a294.woff?h1=YWNsc3VpdGVzLmNvbQ&hmac=a70882c8a3096d6efcf26bab8ed24ab866f6403c6c1e81107126712e50201f50") format("woff");
+}
+
+@font-face {
+  font-family: Oswald;
+  font-weight: 400;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/oswald/oswald_n4.a5ee385bde39969d807f7f1297bf51d73fbf3c1e.woff2?h1=YWNsc3VpdGVzLmNvbQ&hmac=ccec49f0e7f3f50079fd4308f8b668a07394b171b605e90b0b9ab6c4822c2cb6") format("woff2"),
+       url("https://fonts.shopifycdn.com/oswald/oswald_n4.8f3e284746fbc2d29e34993609c51fdc432b0b24.woff?h1=YWNsc3VpdGVzLmNvbQ&hmac=440b757e6fc454bf16194c3f6b0c23315bdd42686afee36f02372f5d43536d99") format("woff");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-weight: 400;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/open_sans/opensans_n4.5460e0463a398b1075386f51084d8aa756bafb17.woff2?h1=YWNsc3VpdGVzLmNvbQ&hmac=1c025f558dc2b53656121c8314004a3ab5c863b095f305384a4bcc8e45c3afa6") format("woff2"),
+       url("https://fonts.shopifycdn.com/open_sans/opensans_n4.8512334118d0e9cf94c4626d298dba1c9f12a294.woff?h1=YWNsc3VpdGVzLmNvbQ&hmac=a70882c8a3096d6efcf26bab8ed24ab866f6403c6c1e81107126712e50201f50") format("woff");
+}
+
+@font-face {
+  font-family: Oswald;
+  font-weight: 500;
+  font-style: normal;
+  src: url("https://fonts.shopifycdn.com/oswald/oswald_n5.22b74dce86cb1e4738ccceb326c9284bc24641e9.woff2?h1=YWNsc3VpdGVzLmNvbQ&hmac=aa517f197f1d47495b124102eef89a328dde1cf147a35f822f2d74229173d564") format("woff2"),
+       url("https://fonts.shopifycdn.com/oswald/oswald_n5.c60897f79173105d5bae1e28e68e9326a4a64631.woff?h1=YWNsc3VpdGVzLmNvbQ&hmac=5dbe23d3898987078789ddb96d720f87e7e4a0e9a6f29d38af08b1ee9d4c0b9f") format("woff");
+}
+
+
+html, body, input, textarea, button, select{
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+h1, h2, h3, h4, h5, h6{
+  font-family: Oswald, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+p{
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.main-menu > ul > li > a, .sub-menu li a, .mega-menu li a,
+.currency-trigger, .switcher-dropdown li a{
+  font-family: Oswald, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+
+
+/* End Typography */
+/* Custom and Customer Page */
+.theme-default-margin, .shopify-challenge__container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+@media (max-width: 767px) {
+  .theme-default-margin, .shopify-challenge__container{
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+.create-custom-page{
+  padding-top: 100px;
+  padding-bottom: 80px;
+}
+@media (max-width: 767px) {
+  .create-custom-page{
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+}
+/* End Custom Page */
+/* QuickView */
+
+/* End Quickview */

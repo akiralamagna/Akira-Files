@@ -1,0 +1,18 @@
+<div class="blog-item blog-grid">
+  <a class="image" href="{{ article.url }}" style="background-image: url(assets/images/blog/blog-1.jpg)">
+    <img src="{{ article | img_url: 'large' }}" alt="">
+  </a>
+  <div class="content">
+    <h3 class="title"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+    <ul class="blog-meta">
+      <li>By - <a href="#">{{ article.author }}</a></li>
+      <li>{{ article.published_at | date: "%d %B, %Y" }}</li>
+    </ul>
+    {% if article.excerpt.size > 0 %}
+    {{ article.excerpt }}
+    {% else %}
+    {{ article.content | truncatewords: 30 }}
+    {% endif %}
+    <a href="{{ article.url }}" class="read-more">{{ section.settings.latest_blog_button }} </a>
+  </div>
+</div>

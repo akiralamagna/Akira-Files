@@ -1,0 +1,155 @@
+<div class="shop-sidebar"> 
+  {% for block in section.blocks %}
+  {% case block.type %}
+
+  {% when 'search' %}
+  <div class="sidebar">
+    {%- if block.settings.search_title != '' -%}
+    <h4 class="sidebar-title">{{ block.settings.search_title }}</h4>
+    {%- endif -%}
+    <div class="sidebar-search">
+      <form action="/search" method="get" class="" role="search">
+        <input type="hidden" name="type" value="product">
+        <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ block.settings.sidebar_search_placeholder }}" aria-label="{{ 'general.search.placeholder' | t }}"> 
+        <input type="submit" value="{{ block.settings.sidebar_search_form_button_text }}">
+      </form> 
+    </div>
+  </div>
+
+  {% when 'menu' %}
+  <div class="sidebar">
+    {%- if block.settings.menu_title != '' -%}
+    <h4 class="sidebar-title">{{ block.settings.menu_title }}</h4>
+    {%- endif -%}
+    <ul class="sidebar-list">
+      {% assign menu = block.settings.menu_handle %}
+      {% for link in linklists[menu].links %}
+      <li class="{% if link.active %}active{% endif %}"><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% when 'category' %}
+  <div class="sidebar">
+    {%- if block.settings.categories_title != '' -%}
+    <h4 class="sidebar-title">{{ block.settings.categories_title }}</h4>
+    {%- endif -%}
+    <ul class="sidebar-list">
+      {% assign categories_list_limit = block.settings.categories_list_limit_hanlde %}
+      {% for c in collections limit: categories_list_limit %}
+      <li class="{% if collection and collection.handle == c.handle %}active{% endif %}"><a href="{{ c.url }}">{{ c.title }} <span>({{ c.products_count }})</span></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% when 'vendor' %}
+  <div class="sidebar">
+    {%- if block.settings.vendors_title != '' -%}
+    <h4 class="sidebar-title">{{ block.settings.vendors_title }}</h4>
+    {%- endif -%}
+    <ul class="sidebar-list">
+      {% assign vendors_list_limit = block.settings.vendors_list_limit_hanlde %}
+      {% for vendor in shop.vendors limit: vendors_list_limit %}
+      <li class="{% if collection.current_vendor == vendor %}active{% endif %}"><a href="{{ vendor | url_for_vendor }}">{{ vendor }}</a></li> 
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% when 'type' %}
+  <div class="sidebar">
+    {%- if block.settings.types_title != '' -%}
+    <h4 class="sidebar-title">{{ block.settings.types_title }}</h4>
+    {%- endif -%}
+    <ul class="sidebar-list">
+      {% assign types_list_limit = block.settings.types_list_limit_hanlde %}
+      {% for type in shop.types limit: types_list_limit %}
+      {%- if type != '' -%}
+      <li class="{% if collection.current_type == type %}active{% endif %}"><a href="{{ type | url_for_type }}">{{ type }}</a></li> 
+      {%- endif -%}
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% when 'color' %}
+  <div class="sidebar product-sidebar-color">
+    {%- if block.settings.color_title != '' -%}
+    <h4 class="sidebar-title">{{ block.settings.color_title }}</h4>
+    {%- endif -%}
+    <ul class="sidebar-list">
+      {% assign tags = block.settings.color_picker | replace: ', ', ',' | replace: ' ,', ',' | split: ',' %}
+      {% assign colors_list_limit = block.settings.colors_list_limit_hanlde %}
+
+      {% for t in tags limit: colors_list_limit %}
+      {% assign tag = t | strip %}
+      {%- if current_tags contains tag -%}
+      <li class="{{ tag }} active" style="background: {{ tag }} no-repeat center; background-size: initial;"><a href="/collections/all/{{ tag | handle }}"></a></li>
+      {%- elsif collection.all_tags contains tag -%}
+      <li class="{{ tag }}" style="background: {{ tag }} no-repeat center; background-size: initial;"><a href="/collections/all/{{ tag | handle }}"></a></li>
+      {%- endif -%}
+      {% endfor %}
+    </ul>
+  </div>
+
+
+  {% when 'size' %}
+  <div class="sidebar">
+    {%- if block.settings.size_title != '' -%}
+    <h4 class="sidebar-title">{{ block.settings.size_title }}</h4>
+    {%- endif -%}
+    <ul class="tag-cloud">
+      {% assign tags = block.settings.size_picker | replace: ', ', ',' | replace: ' ,', ',' | split: ',' %}
+      {% assign size_list_limit = block.settings.size_list_limit_hanlde %}
+
+      {% for t in tags limit: size_list_limit %}
+      {% assign tag = t | strip %}
+      {%- if current_tags contains tag -%}
+      <li class="active"><a href="/collections/all/{{ tag | handle }}">{{ tag }}</a></li>
+      {%- elsif collection.all_tags contains tag -%}
+      <li><a href="/collections/all/{{ tag | handle }}">{{ tag }}</a></li>
+      {%- endif -%}
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% when 'tag' %}
+  <div class="sidebar">
+    {%- if block.settings.tags_title != '' -%}
+    <h4 class="sidebar-title">{{ block.settings.tags_title }}</h4>
+    {%- endif -%}
+    <ul class="tag-cloud">
+      {% assign tags_list_limit = block.settings.tags_list_limit_hanlde %}
+      {% for tag in collection.tags limit: tags_list_limit %}
+      {%- if current_tags contains tag -%}
+      <li class="active"><a href="/collections/all/{{ tag | handle }}">{{ tag }}</a></li>
+      {%- else -%}
+      <li><a href="/collections/all/{{ tag | handle }}">{{ tag }}</a></li>
+      {%- endif -%}
+      {% endfor %}
+    </ul>
+  </div>
+
+  {% when 'banner' %}
+  <div class="sidebar">
+    {%- if block.settings.banner_title != '' -%}
+    <h4 class="sidebar-title">{{ block.settings.banner_title }}</h4>
+    {%- endif -%}
+    <div class="sidebar-banner banner">
+      {% if block.settings.sidebar_banner_imgae != blank %}
+      <a href="{{ block.settings.sidebar_banner_imgae_url }}">
+        <img src="{{ block.settings.sidebar_banner_imgae | img_url: 'master' }}" alt="{{ block.settings.sidebar_banner_imgae.alt }}">
+      </a>
+      {% else %}
+      <img src="https://dummyimage.com/600x400/cccccc/fff&text=Banner" alt="Banner Image">
+      {% endif %}
+    </div>
+  </div>
+
+  {% endcase %}
+  {% endfor %}
+
+</div>
+
+
+<script>
+  $(".sidebar-wedget li.active a").removeAttr("href");
+</script>

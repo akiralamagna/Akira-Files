@@ -1,0 +1,419 @@
+<!-- Header Section Start -->
+<div class="header-section section" {% if section.settings.header_sticky_enable == true %} id="sticky-header"{% endif %}>
+  <div class="container">
+    <div class="row">
+
+      <!-- Header Logo -->
+      <div class="col">
+        <div class="header-logo">
+          {%- include 'header-logo' -%}
+        </div>
+      </div>
+
+      <!-- Main Menu -->
+      <div class="col d-none d-lg-block">
+        {%- include 'main-menu' -%}
+      </div>
+
+      
+      <!-- Header Action -->
+      <div class="col">
+        <div class="header-action">  
+          {%- if settings.currency_enable -%}
+          {%- include 'currency-picker' -%}
+          {%- endif -%}    
+          
+          <!-- Wishlist -->
+          {%- if section.settings.wishlist_icon_enable and settings.wishlist_enable -%}
+          {% if customer %}
+          <a href="/pages/wishlist" class="header-wishlist"><span class="icon"></span></a>
+          {% else %}
+          <a href="/account/login" class="header-wishlist"><span class="icon"></span></a>
+          {% endif %}
+          {%- endif -%}
+
+          
+{% comment %} Edited by: Akira Lamagna Date: August 10, 2021 
+          
+          <div class="user-menu-active">
+            <span class="dropdown-toggle">
+              <span class=""><i class="fa fa-user-o" aria-hidden="true"></i></span>
+            </span>
+            {% assign currency = settings.supported_currencies | split: '|' %}
+            <ul class="user-dropdown">
+              {% if customer %}
+              <li><a href="/account/logout" class="header-wishlist">Logout</a></li>
+              {% else %}
+              <li><a href="/account/login" class="header-wishlist">Login</a></li>
+              {% endif %}
+              {%- assign user_menu = section.settings.user_menu_handle -%}
+              {% for link in linklists[user_menu].links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+ 
+{% endcomment %}          
+
+          <!-- Search -->
+          {% if section.settings.header_search_enable == true %}
+          <div class="header-search">
+            <button class="search-open search-toggle">
+              <i class="search-icon bardy bardy-search"></i>
+              <i class="close-icon bardy bardy-cancel"></i>
+            </button>
+            <div class="header-search-form">
+              <form action="/search" method="get" class="" role="search">
+                <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
+                <button type="submit"><i class="bardy bardy-search"></i></button>
+              </form>
+            </div> 
+          </div>  
+          
+          {% endif %}
+
+{% comment %} Edited by: Akira Lamagna Date: August 10, 2021           
+          
+          <!-- Cart Wrap Start-->
+          <div class="header-cart-wrap">
+            {% include 'mini-cart' %}
+          </div><!-- Cart Wrap End-->
+          
+{% endcomment %}          
+<div class="col-sm">
+          <div class="header-logo1" align="center">
+          {%- include 'header-logo1' -%}
+        </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-12 d-block d-lg-none">
+        <div class="mobile-menu"></div>
+      </div>
+
+    </div>
+  </div>
+</div><!-- Header Section End -->
+
+{% comment %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {%- include 'header-logo' -%}
+    </div>
+
+    {%- if settings.currency_enable -%}
+    <div class="col">
+      {%- include 'currency-picker' -%}
+    </div>
+    {%- endif -%}
+    
+    <div>
+      {% include 'search-bar' %}
+    </div>
+
+    <div class="col">
+      <div class="right">       
+        {%- include 'mini-cart' -%}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    {% include 'main-menu' %}
+  </div>
+</div>
+{% endcomment %}
+
+{%- style -%}
+
+@media screen and (max-width:640px){
+    .header-logo {
+        display: none;
+    }
+}
+@media screen and (min-width:640px){
+    .header-logo1 {
+        display: none;
+    }
+}
+
+
+  .theme-logo img{
+    max-width: {{ section.settings.logo_width }}px !important;
+  }
+  .header-section {
+    background-color: {{ section.settings.header_bg_color }};
+  }
+  .main-menu > ul > li > a {
+    color: {{ section.settings.header_menu_color }};
+  }  
+  .main-menu > ul > li > a::before {
+    background-color: {{ section.settings.header_menu_before_color }};
+  }
+  .sub-menu {
+    background-color: {{ section.settings.header_submenu_bg_color }};
+  }
+  .sub-menu li a, .mega-menu li.col > a {
+    color: {{ section.settings.header_submenu_color }};
+  }
+
+  .main-menu > ul > li:hover > a {
+    color: {{ section.settings.header_menu_hover_color }};
+  }  
+  .main-menu > ul > li:hover > a::before {
+    background-color: {{ section.settings.header_menu_hover_before_color }};
+  }
+  .sub-menu li:hover > a {
+    color: {{ section.settings.header_submenu_hover_color }};
+  }
+
+
+  .header-section .dropdown-toggle::after,
+  .header-section .currency-trigger, 
+  .header-section .header-cart-toggle span, 
+  .header-section .header-cart-toggle i, 
+  .header-section .user-menu-active .dropdown-toggle i, 
+  .header-section .header-search .search-toggle i  {
+      color: {{ section.settings.header_currency_cart_color }};
+      border-top-color: { section.settings.header_currency_cart_color }};
+  }  
+  .header-section .dropdown-toggle:hover::after,
+  .header-section .currency-trigger:hover, 
+  .header-section .header-cart-toggle span:hover, 
+  .header-section .header-cart-toggle i:hover, 
+  .header-section .user-menu-active .dropdown-toggle i:hover, 
+  .header-section .header-search .search-toggle i:hover  {
+      color: {{ section.settings.header_currency_cart_hover_color }};
+      border-top-color: { section.settings.header_currency_cart_hover_color }};
+  }
+
+
+  .mobile-menu .mean-bar .meanmenu-reveal span.menu-bar {
+	  background-color: {{ section.settings.mobile_menu_icon_color }};
+  }
+
+  .mobile-menu .mean-bar .meanmenu-reveal span.menu-bar,
+  .mobile-menu .mean-bar .meanmenu-reveal span.menu-bar::before, 
+  .mobile-menu .mean-bar .meanmenu-reveal span.menu-bar::after,
+  .mobile-menu .mean-bar .meanmenu-reveal span.menu-close::before, 
+  .mobile-menu .mean-bar .meanmenu-reveal span.menu-close::after {
+	  background-color: {{ section.settings.mobile_menu_icon_color }};
+  }
+  .mobile-menu .mean-bar .mean-nav {
+      background-color: {{ section.settings.mobile_menu_bg_color }};
+  }
+  .mobile-menu .mean-bar .mean-nav > ul li a {
+      color: {{ section.settings.mobile_menu_item_color }};
+  }
+  .mobile-menu .mean-bar .mean-nav > ul li a:hover {
+      color: {{ section.settings.mobile_menu_item_hover_color }};
+  }
+  
+  
+{%- endstyle -%}
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+		{
+          "type": "header",
+          "content": "Sticky Header Enable"
+        },
+		{
+          "type": "checkbox",
+          "id": "header_sticky_enable",
+          "label": "Sticky Header Enable",
+		  "default": true
+        },
+		{
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+		{
+          "type": "range",
+          "id": "logo_width",
+          "label": "Custom logo width",
+          "min": 100,
+          "max": 300,
+          "step": 5,
+          "unit": "px",
+          "default": 150
+        },
+		{
+          "type": "header",
+          "content": "Wishlist"
+        },
+		{
+          "type": "checkbox",
+          "id": "wishlist_icon_enable",
+          "label": "Show wishlist icon",
+		  "default": false
+        },
+		{
+          "type": "header",
+          "content": "User Menu"
+        },
+		{
+          "type": "link_list",
+          "id": "user_menu_handle",
+          "label": "User Menu"
+        },
+		{
+          "type": "header",
+          "content": "Header Search"
+        },
+		{
+          "type": "checkbox",
+          "id": "header_search_enable",
+          "label": "Show Header Search",
+		  "default": false
+        },
+		{
+          "type": "header",
+          "content": "Color"
+        },
+		{
+          "type": "color",
+          "id": "header_bg_color",
+          "label": "Header Background Color",
+		  "default": "#d0a97e"
+        },
+		{
+          "type": "header",
+          "content": "Header Menu"
+        },
+		{
+          "type": "color",
+          "id": "header_menu_color",
+          "label": "Menu Color",
+		  "default": "#222222"
+        },
+		{
+          "type": "color",
+          "id": "header_menu_before_color",
+          "label": "Menu Before Color",
+		  "default": "#222222"
+        },
+		{
+          "type": "color",
+          "id": "header_submenu_bg_color",
+          "label": "Submenu Background Color",
+		  "default": "#222222"
+        },
+		{
+          "type": "color",
+          "id": "header_submenu_color",
+          "label": "Submenu Color",
+		  "default": "#d8d8d8"
+        },
+		{
+          "type": "color",
+          "id": "header_menu_hover_color",
+          "label": "Menu Item Hover Color"
+        },
+		{
+          "type": "color",
+          "id": "header_menu_hover_before_color",
+          "label": "Menu Item Border Hover Color"
+        },
+		{
+          "type": "color",
+          "id": "header_submenu_hover_color",
+          "label": "Submenu Item Hover Color"
+        },
+		{
+          "type": "header",
+          "content": "Header Option"
+        },
+		{
+          "type": "color",
+          "id": "header_currency_cart_color",
+          "label": "Header Option Color",
+		  "default": "#222222"
+        },
+		{
+          "type": "color",
+          "id": "header_currency_cart_hover_color",
+          "label": "Header Option Hover Color"
+        },
+		{
+          "type": "header",
+          "content": "Mobile Menu"
+        },
+		{
+          "type": "color",
+          "id": "mobile_menu_icon_color",
+          "label": "Mobile Menu Icon Color",
+		  "default": "#222222"
+        },
+		{
+          "type": "color",
+          "id": "mobile_menu_bg_color",
+          "label": "Mobile Menu Background Color",
+		  "default": "#fff"
+        },
+		{
+          "type": "color",
+          "id": "mobile_menu_item_color",
+          "label": "Mobile Menu Item Color",
+		  "default": "#222222"
+        },
+		{
+          "type": "color",
+          "id": "mobile_menu_item_hover_color",
+          "label": "Mobile Menu Item Hover Color",
+		  "default": "#d0a97e"
+        },
+		{
+          "type": "header",
+          "content": "Mini Cart"
+        },
+		{
+          "type": "text",
+          "id": "mini_cart_title",
+          "label": "Mini Cart Title",
+		  "default": "Your cart"
+        },
+		{
+          "type": "text",
+          "id": "cart_item_title",
+          "label": "Item Title",
+		  "default": "Item"
+        },
+		{
+          "type": "text",
+          "id": "cart_items_title",
+          "label": "Items Title",
+		  "default": "Items"
+        },
+
+		{
+          "type": "text",
+          "id": "quantity_title",
+          "label": "Quantity Title",
+		  "default": "Qty: "
+        },
+		{
+          "type": "text",
+          "id": "view_cart_title",
+          "label": "View Cart Title",
+		  "default": "View Cart"
+        },
+		{
+          "type": "text",
+          "id": "checkout_title",
+          "label": "Checkout Title",
+		  "default": "Checkout"
+        }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
